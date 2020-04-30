@@ -1,2 +1,5 @@
 # Project exclude paths
 /data-structure-demo/target/
+
+.idea
+*.iml
