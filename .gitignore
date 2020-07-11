@@ -1,5 +1,6 @@
 # Project exclude paths
 /data-structure-demo/target/
+/rocketmq-demo/target/
 
 .idea
 *.iml
