@@ -1,9 +1,7 @@
 package simpleexample;
 
-import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
-import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.apache.rocketmq.remoting.exception.RemotingException;
@@ -11,13 +9,13 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 import java.io.UnsupportedEncodingException;
 
 /**
- * 同步发送消息
+ * 单向传递消息
  *
  * @author: wangbingshuai
- * @create: 2020-07-10 20:38
+ * @create: 2020-07-11 19:21
  **/
-public class SyncProducer {
-    public static void main(String[] args) throws MQClientException, UnsupportedEncodingException, RemotingException, InterruptedException, MQBrokerException {
+public class OnewayProducer {
+    public static void main(String[] args) throws MQClientException, UnsupportedEncodingException, RemotingException, InterruptedException {
         // Instantiate with a producer group name.
         DefaultMQProducer producer = new DefaultMQProducer("wbs_mq_demo");
         // Specify name server addresses.
@@ -25,15 +23,13 @@ public class SyncProducer {
         // Launch the instance.
         producer.start();
         for (int i = 0; i < 100; i++) {
-            Message message = new Message("TopicTest",
+            Message msg = new Message("TopicTest",
                     "TagA",
-                    ("Hello RocketMQ" + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
-            );
+                    ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             // Call send message to deliver message to one of brokers.
-            SendResult sendResult = producer.send(message);
-            System.out.printf("%s%n", sendResult);
+            producer.sendOneway(msg);
         }
-        // Shut down once the producer instance is not longer in use.
+        Thread.sleep(5000);
         producer.shutdown();
     }
 }
