@@ -25,7 +25,7 @@ public class Lru {
             while (linkList != null) {
                 if (linkList.getData().equals(data)) {
                     has = true;
-                    // 移除当前节点，插到头结点
+                    // 移除当前结点，插到头结点
                     pre.setNext(linkList.getNext());
                     linkList.setNext(head.getNext());
                     head.setNext(linkList);
@@ -36,7 +36,7 @@ public class Lru {
                 }
             }
             if (!has) {
-                // 插入新节点，然后判断长度是否大于n，若大于，则删除最后一个节点
+                // 插入新结点，然后判断长度是否大于n，若大于，则删除最后一个结点
                 LinkNode linkNode = new LinkNode();
                 linkNode.setData(data);
                 if (head.getNext() != null) {
@@ -58,7 +58,7 @@ public class Lru {
                     count--;
                 }
             }
-            // 遍历输出所有节点
+            // 遍历输出所有结点
             linkList = head.getNext();
             int num = 1;
             while (linkList != null) {

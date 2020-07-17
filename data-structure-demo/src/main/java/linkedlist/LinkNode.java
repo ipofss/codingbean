@@ -3,7 +3,7 @@ package linkedlist;
 import lombok.Data;
 
 /**
- * 单链表节点
+ * 单链表结点
  *
  * @author: wangbingshuai
  * @create: 2020-07-17 15:02
