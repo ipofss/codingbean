@@ -1,6 +1,9 @@
 # codingbean
 用来记录个人在技术学习中的知识点，后续会由点成线，再由线成面，让自己的知识更系统化
 
+## data-structure-demo
+该模块记录常用的数据结构与算法的简单例子
+
 ## rocketmq-demo
 该模块参考rocketmq官网例子，写下简单的例子<br>
 注：<br>
