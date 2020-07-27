@@ -86,19 +86,21 @@ public class DynamicArrayQueue {
     }
 
     public static void main(String[] args) {
-        DynamicArrayQueue dynamicArrayQueue = new DynamicArrayQueue(5);
+        DynamicArrayQueue queue = new DynamicArrayQueue(5);
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("入队：en，出队：de");
             String line = scanner.next();
             if ("en".equals(line)) {
                 String next = scanner.next();
-                dynamicArrayQueue.enqueue(next);
-                dynamicArrayQueue.printAll();
+                queue.enqueue(next);
+                queue.printAll();
             } else if ("de".equals(line)) {
-                String str = dynamicArrayQueue.dequeue();
+                String str = queue.dequeue();
                 System.out.println("出队元素：" + str);
-                dynamicArrayQueue.printAll();
+                queue.printAll();
+            } else if ("exit".equals(line)) {
+                break;
             }
         }
     }

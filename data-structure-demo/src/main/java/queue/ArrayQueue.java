@@ -76,19 +76,21 @@ public class ArrayQueue {
     }
 
     public static void main(String[] args) {
-        ArrayQueue arrayQueue = new ArrayQueue(5);
+        ArrayQueue queue = new ArrayQueue(5);
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("入队：en，出队：de");
             String line = scanner.next();
             if ("en".equals(line)) {
                 String next = scanner.next();
-                arrayQueue.enqueue(next);
-                arrayQueue.printAll();
+                queue.enqueue(next);
+                queue.printAll();
             } else if ("de".equals(line)) {
-                String str = arrayQueue.dequeue();
+                String str = queue.dequeue();
                 System.out.println("出队元素：" + str);
-                arrayQueue.printAll();
+                queue.printAll();
+            } else if ("exit".equals(line)) {
+                break;
             }
         }
     }
