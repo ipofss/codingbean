@@ -27,6 +27,7 @@
     <modules>
         <module>data-structure-demo</module>
         <module>rocketmq-demo</module>
+        <module>jvm-demo</module>
     </modules>
 
 </project>
