@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 测试代码
  *
@@ -9,10 +6,8 @@ import java.util.List;
  **/
 public class DemoTest {
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(i);
-        }
-        System.out.println(list);
+        String str = "我";
+        byte[] bytes = str.getBytes();
+        System.out.println();
     }
 }
