@@ -1,4 +1,4 @@
-package simpleexample;
+package simple;
 
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
@@ -29,7 +29,7 @@ public class SyncProducer {
             // 创建消息，并指定Topic，Tag和消息体
             Message message = new Message("TopicTest",
                     "TagA",
-                    ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
+                    ("Hello RocketMQ Simple Sync " + i).getBytes(RemotingHelper.DEFAULT_CHARSET)
             );
             // 发送消息到一个Broker
             SendResult sendResult = producer.send(message);

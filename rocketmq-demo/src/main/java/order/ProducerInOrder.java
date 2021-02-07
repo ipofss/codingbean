@@ -1,4 +1,4 @@
-package orderexample;
+package order;
 
 import lombok.Getter;
 import lombok.Setter;

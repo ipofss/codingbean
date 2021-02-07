@@ -1,4 +1,4 @@
-package simpleexample;
+package simple;
 
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -27,7 +27,7 @@ public class OnewayProducer {
             // 创建消息，并指定Topic，Tag和消息体
             Message msg = new Message("TopicTest",
                     "TagA",
-                    ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+                    ("Hello RocketMQ Simple Oneway " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             // 发送单向消息，没有任何返回结果
             producer.sendOneway(msg);
         }

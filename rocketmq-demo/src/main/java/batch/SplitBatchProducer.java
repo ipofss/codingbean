@@ -1,4 +1,4 @@
-package batchexample;
+package batch;
 
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
@@ -6,7 +6,6 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.exception.RemotingException;
 
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package batchexample;
+package batch;
 
 import org.apache.rocketmq.common.message.Message;
 

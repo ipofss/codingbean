@@ -1,6 +1,7 @@
-package simpleexample;
+package filter;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.consumer.MessageSelector;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
@@ -10,25 +11,17 @@ import org.apache.rocketmq.common.message.MessageExt;
 import java.util.List;
 
 /**
- * 消费消息
- *
- * @author: wangbingshuai
- * @create: 2020-07-11 19:26
- **/
-public class Consumer {
+ * 过滤消息样例消费者
+ * 需要设置Broker支持sql https://blog.csdn.net/u010690828/article/details/84337688
+ */
+public class FilterConsumer {
     public static void main(String[] args) throws MQClientException {
-        // 实例化消费者
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("wbs_mq_demo");
-        // 设置NameServer的地址
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("wbs_filter_mq_demo");
         consumer.setNamesrvAddr("localhost:9876");
-        // 订阅一个或者多个Topic，以及Tag来过滤需要消费的消息
-        consumer.subscribe("TopicTest", "*");
-        // 注册回调实现类来处理从Broker拉取回来的消息
+        consumer.subscribe("TopicTest", MessageSelector.bySql("a between 0 and 3 and b = 'abc'"));
         consumer.registerMessageListener(new MessageListenerConcurrently() {
-
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
-//                 System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
                 for (int i = 0; i < msgs.size(); i++) {
                     MessageExt msg = msgs.get(i);
                     System.out.println("consumeThread=" + Thread.currentThread().getName() + ", queueId=" + msg.getQueueId() + ", content:" + new String(msg.getBody()));
@@ -36,8 +29,6 @@ public class Consumer {
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
-        // 启动消费者实例
         consumer.start();
-        System.out.printf("Consumer Started.%n");
     }
 }

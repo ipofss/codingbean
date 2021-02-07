@@ -1,4 +1,4 @@
-package simpleexample;
+package simple;
 
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -38,7 +38,7 @@ public class AsyncProducer {
             Message msg = new Message("TopicTest",
                     "TagA",
                     "OrderID188",
-                    "Hello world".getBytes(RemotingHelper.DEFAULT_CHARSET));
+                    ("Hello RocketMQ Simple Async " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             // SendCallback接收异步返回结果的回调
             producer.send(msg, new SendCallback() {
 
