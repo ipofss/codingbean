@@ -1,4 +1,4 @@
-package simpleexample;
+package simple;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -17,21 +17,26 @@ import java.util.List;
  **/
 public class Consumer {
     public static void main(String[] args) throws MQClientException {
-        // Instantiate with specified consumer group name.
+        // 实例化消费者
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("wbs_mq_demo");
-        // Specify name server addresses.
+        // 设置NameServer的地址
         consumer.setNamesrvAddr("localhost:9876");
-        // Subscribe one more more topics to consume.
+        // 订阅一个或者多个Topic，以及Tag来过滤需要消费的消息
         consumer.subscribe("TopicTest", "*");
+        // 注册回调实现类来处理从Broker拉取回来的消息
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 
             @Override
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
-                System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
+//                 System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msgs);
+                for (int i = 0; i < msgs.size(); i++) {
+                    MessageExt msg = msgs.get(i);
+                    System.out.println("consumeThread=" + Thread.currentThread().getName() + ", queueId=" + msg.getQueueId() + ", content:" + new String(msg.getBody()));
+                }
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
             }
         });
-        // Launch the consumer instance.
+        // 启动消费者实例
         consumer.start();
         System.out.printf("Consumer Started.%n");
     }
