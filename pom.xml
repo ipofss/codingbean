@@ -28,6 +28,7 @@
         <module>data-structure-demo</module>
         <module>rocketmq-demo</module>
         <module>jvm-demo</module>
+        <module>problem-demo</module>
     </modules>
 
 </project>

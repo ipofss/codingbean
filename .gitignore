@@ -2,6 +2,7 @@
 /data-structure-demo/target/
 /rocketmq-demo/target/
 /jvm-demo/target/
+/problem-demo/target/
 
 .idea
 *.iml
