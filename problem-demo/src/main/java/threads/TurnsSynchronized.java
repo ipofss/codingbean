@@ -21,7 +21,7 @@ public class TurnsSynchronized {
             while (num <= end) {
                 synchronized (lock) {
                     if (num % 3 == threadId) {
-                        System.out.println("线程：" + threadId + ":" + num++);
+                        System.out.println("线程" + threadId + ":" + num++);
                         lock.notifyAll();
                     } else {
                         try {

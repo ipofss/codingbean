@@ -27,7 +27,7 @@ public class TurnsLock {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("线程：" + threadId + ":" + num++);
+                    System.out.println("线程" + threadId + ":" + num++);
                 }
                 lock.unlock();
             }
