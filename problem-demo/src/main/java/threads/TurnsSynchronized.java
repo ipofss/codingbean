@@ -4,7 +4,7 @@ package threads;
  * 3个线程轮有打印：1、2、3、1、2、3、1、2、3、、、
  * synchronized+wait+notifyAll
  */
-public class TurnSynchronized {
+public class TurnsSynchronized {
     static class Inner implements Runnable {
         private Object lock;
         private static int num = 0;
